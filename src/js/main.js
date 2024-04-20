@@ -22,7 +22,7 @@ myObj.queue = {
     menuTarger: function name(params) {
         var currentUrl = window.location.href;
 
-        var menuLinks = document.querySelectorAll('.header-menu__link');
+        var menuLinks = document.querySelectorAll('.header-menu__link, .footer-menu__link');
 
         menuLinks.forEach(function (link) {
             if (link.href === currentUrl) {
@@ -52,5 +52,24 @@ myObj.queue = {
             inputField.addEventListener('input', toggleButtonState);
             toggleButtonState(); // Initial state check
         });
+    },
+
+    btnUp: function name(params) {
+        window.addEventListener('scroll', function () {
+            var scroll = document.querySelector('.btnup');
+
+            scroll.classList.toggle('active', window.scrollY > 300);
+        });
+
+        const goTopBtn = document.querySelector('.btnup');
+
+        goTopBtn.addEventListener('click', goTop);
+
+        function goTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
     }
 }
