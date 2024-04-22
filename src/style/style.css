@@ -277,6 +277,8 @@ html, body {
     height: 100%;
     padding: 10px 15px;
     border-right: 1px solid #b1afaa;
+
+    display: none;
 }
 
 .site-search__btn {
@@ -310,7 +312,9 @@ html, body {
     background-size: cover;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 3px;
+    padding-left: 7px;
     margin-right: 20px;
 }
 
@@ -550,6 +554,7 @@ button {}
 }
 
 .footer-newsletter__checkbox {
+    cursor: pointer;
     margin-top: 21px;
     display: flex;
     align-items: flex-start;
@@ -608,4 +613,197 @@ button {}
     width: 14px;
     height: 9px;
     margin-bottom: 4px;
+}
+
+/* Меню слайдер Магазина на главной */
+
+.folder-menu-slider__wrap {
+    display: flex;
+}
+
+.folder-menu__inner  {
+    width: 50%;
+    max-width: 327px;
+    padding: 40px;
+    margin-right: 30px;
+    background: #1A654B;
+}
+
+.folder-menu__btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.folder-menu__title {
+    display: inline-block;
+    font-weight: 500;
+    font-size: 28px;
+    color: #47A15D;
+}
+
+.folder-menu {
+    margin: 12px 0 20px 0;
+}
+
+.folder-menu__item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.folder-menu__link {
+    display: block;
+    padding: 17px 0px;
+    color: #fff;
+    transition: 0.3s;
+    font-size: 18px;
+    line-height: 21.33px;
+    text-align: left;
+}
+
+.folder-menu__link:hover {
+    color: #FFCD1C;
+}
+
+.folder-arrow {
+    display: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    background: #47A15D;
+    font-size: 11px;
+    line-height: 13.04px;
+    letter-spacing: 0.2em;
+    text-align: left;
+    text-transform: uppercase;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.folder-arrow.activ {
+    display: inline-block;
+}
+
+.folder-slider {
+    position: relative;
+    height: 593px;
+}
+.folder-slider__item {
+    position: relative;
+    height: 100%;
+}
+
+.folder-slider__image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.folder-slider__image img {
+    font-size: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.folder-slider__info {
+    width: 100%;
+    height: 100%;
+    padding: 141px 60px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+}
+
+.slider-info__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.slider-info__title {
+    display: inline-block;
+    padding: 17px 29px;
+    background: #FFCD1C;
+    font-size: 38px;
+    line-height: 45.03px;
+    text-align: left;
+    color: #fff;
+}
+
+.slider-info__price {
+    width: auto;
+    display: inline-block;
+    padding: 14px 30px;
+    background: #FFFFFF;
+    font-size: 38px;
+    line-height: 45.03px;
+    text-align: left;
+}
+
+.swiper-btn {
+    position: absolute;
+    display: flex;
+    bottom: 60px;
+    left: 60px;
+    width: 120px;
+    height: 60px;
+}
+
+.swiper-button-next {
+    position: absolute;
+    top: inherit;
+    right: 0;
+    left: auto;
+    width: 60px;
+    height: 60px;
+    transition: 0.3s;
+    background: #1A654B;
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swiper-button-prev {
+    position: absolute;
+    top: inherit;
+    left: 0;
+    right: auto;
+    width: 60px;
+    height: 60px;
+    transition: 0.3s;
+    background: #1A654B;
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swiper-button-prev:hover {
+    background: #47A15D;
+}
+
+.swiper-button-next:hover {
+    background: #47A15D;
+}
+
+.swiper-button-next:after {
+    font-size: 0;
+    width: 8px;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg width='9' height='14' viewBox='0 0 9 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.292894 0.292893C0.683418 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L8.41422 7L1.70711 13.7071C1.31658 14.0976 0.683419 14.0976 0.292894 13.7071C-0.0976301 13.3166 -0.0976301 12.6834 0.292894 12.2929L5.58579 7L0.292894 1.70711C-0.0976301 1.31658 -0.0976301 0.683417 0.292894 0.292893Z' fill='white'/%3E%3C/svg%3E%0A");
+}
+
+.swiper-button-prev:after {
+    font-size: 0;
+    width: 8px;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg width='9' height='14' viewBox='0 0 9 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.585786 7L7.29289 13.7071C7.68342 14.0976 8.31658 14.0976 8.70711 13.7071C9.09763 13.3166 9.09763 12.6834 8.70711 12.2929L3.41421 7L8.70711 1.70711C9.09763 1.31658 9.09763 0.683417 8.70711 0.292893Z' fill='white'/%3E%3C/svg%3E%0A");
 }

@@ -31,29 +31,6 @@ myObj.queue = {
         });
     },
 
-    searchOpen: function name(params) {
-        document.addEventListener('DOMContentLoaded', function () {
-            const inputField = document.querySelector('.site-search__panel');
-            const searchButton = document.getElementById('searchBtn');
-
-            function toggleButtonState() {
-                if (inputField.value.trim() === '') {
-                    searchButton.classList.add('disabled');
-                } else {
-                    searchButton.classList.remove('disabled');
-                }
-            }
-
-            function addActivClass() {
-                inputField.classList.add('activ');
-            }
-
-            searchButton.addEventListener('click', addActivClass);
-            inputField.addEventListener('input', toggleButtonState);
-            toggleButtonState(); // Initial state check
-        });
-    },
-
     btnUp: function name(params) {
         window.addEventListener('scroll', function () {
             var scroll = document.querySelector('.btnup');
@@ -71,5 +48,37 @@ myObj.queue = {
                 behavior: 'smooth'
             });
         };
+    },
+
+    folderMenu: function name(params) {
+        var folderMenu = document.querySelector('.folder-menu__list');
+        var folderArrow = document.querySelector('.folder-arrow');
+
+        var hiddenItems = Array.from(folderMenu.children).slice(7);
+            hiddenItems.forEach(function(item) {
+            item.style.display = 'none';
+        });
+
+        if (folderMenu.children.length > 7) {
+            folderArrow.classList.add('activ');
+        };
+
+        folderArrow.addEventListener('click', function() {
+        hiddenItems.forEach(function(item) {
+            item.style.display = item.style.display === 'none' ? 'block' : 'none';
+        });
+
+        var buttonText = folderArrow.textContent.trim();
+            folderArrow.textContent = buttonText === 'Еще категории' ? 'Скрыть категории' : 'Еще категории';
+        });
+    },
+
+    folderMainSlider: function name(params) {
+        var swiper = new Swiper(".folder-slider", {
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            },
+        });
     }
 }
