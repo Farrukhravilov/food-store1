@@ -80,5 +80,16 @@ myObj.queue = {
                 prevEl: '.swiper-button-prev'
             },
         });
+    },
+
+    prodSlider: function name(params) {
+        var swiper = new Swiper(".product-wrap", {
+            slidesPerView: 4,
+            spaceBetween: 30,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            },
+        });
     }
 }
