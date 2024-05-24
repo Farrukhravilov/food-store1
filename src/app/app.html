@@ -27,16 +27,70 @@
                 <div class="header-inner">
                     <div class="header-top">
                         <div class="header-top__wrap">
-                            <nav class="header-menu container">
-                                <ul class="header-menu__list">
-                                    <li class="header-menu__item"><a href="/src/app/app.html" class="header-menu__link">Главная</a></li>
-                                    <li class="header-menu__item"><a href="#" class="header-menu__link">Партнерам</a></li>
-                                    <li class="header-menu__item"><a href="#" class="header-menu__link">Акции и скидки</a></li>
-                                    <li class="header-menu__item"><a href="#" class="header-menu__link">Новости</a></li>
-                                    <li class="header-menu__item"><a href="#" class="header-menu__link">Помощь</a></li>
-                                    <li class="header-menu__item"><a href="#" class="header-menu__link">Контакты</a></li>
-                                </ul>
-                            </nav>
+                            <div class="header-top__inner container">
+                                <nav class="header-menu">
+                                    <ul class="header-menu__list">
+                                        <li class="header-menu__item"><a href="/src/app/app.html" class="header-menu__link">Главная</a></li>
+                                        <li class="header-menu__item"><a href="#" class="header-menu__link">Партнерам</a></li>
+                                        <li class="header-menu__item"><a href="#" class="header-menu__link">Акции и скидки</a></li>
+                                        <li class="header-menu__item"><a href="#" class="header-menu__link">Новости</a></li>
+                                        <li class="header-menu__item"><a href="#" class="header-menu__link">Помощь</a></li>
+                                        <li class="header-menu__item"><a href="#" class="header-menu__link">Контакты</a></li>
+                                    </ul>
+                                </nav>
+                                <div class="header-adop__info">
+
+                                    <div class="adop-search adop-item">
+                                        <i>
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9 2C5.13401 2 2 5.13401 2 9C2 12.866 5.13401 16 9 16C10.9333 16 12.6819 15.2176 13.9497 13.9497C15.2176 12.6819 16 10.9333 16 9C16 5.13401 12.866 2 9 2ZM0 9C0 4.02944 4.02944 0 9 0C13.9706 0 18 4.02944 18 9C18 11.1246 17.2628 13.0784 16.0319 14.6176L21.7071 20.2929C22.0976 20.6834 22.0976 21.3166 21.7071 21.7071C21.3166 22.0976 20.6834 22.0976 20.2929 21.7071L14.6176 16.0319C13.0784 17.2628 11.1246 18 9 18C4.02944 18 0 13.9706 0 9Z" fill="#B1AFAA"/>
+                                            </svg>                                            
+                                        </i>
+                                    </div>
+
+                                    <div class="adop-contact adop-item">
+                                        <i>
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.9109 2C2.32901 2 1.96042 2.45395 2.00449 2.89854C2.8945 11.8754 10.0355 19.0164 19.0124 19.9064C19.4569 19.9505 19.9109 19.5819 19.9109 19V15.4415C19.9109 15.0111 19.6355 14.6289 19.2271 14.4928L15.7673 13.3396C15.408 13.2198 15.0118 13.3133 14.744 13.5811L14.1902 14.1349C13.5276 14.7976 12.472 14.9243 11.6724 14.3773C9.78124 13.0836 8.6799 11.9895 7.5053 10.2209C6.97422 9.42133 7.11332 8.38337 7.76399 7.73269L8.32976 7.16693C8.5976 6.89909 8.69112 6.50292 8.57134 6.14359L7.41807 2.68377C7.28195 2.27543 6.89981 2 6.46938 2H2.9109ZM0.0142526 3.09586C-0.159625 1.34208 1.28365 0 2.9109 0H6.46938C7.76067 0 8.90709 0.826291 9.31543 2.05132L10.4687 5.51113C10.828 6.58914 10.5475 7.77764 9.74398 8.58114L9.18705 9.13806C10.1968 10.6536 11.1052 11.564 12.7829 12.7138L13.3298 12.1669C14.1333 11.3634 15.3218 11.0829 16.3998 11.4422L19.8596 12.5955C21.0846 13.0038 21.9109 14.1502 21.9109 15.4415V19C21.9109 20.6273 20.5688 22.0705 18.815 21.8966C8.8897 20.9126 0.998296 13.0212 0.0142526 3.09586Z" fill="#B1AFAA"/>
+                                            </svg>                                            
+                                        </i>
+                                    </div>
+
+                                    <div class="adop-user adop-item">
+                                        <i>
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 14.2173 2.72083 16.2651 3.94221 17.9235C4.92261 16.0046 6.57304 14.4833 8.58609 13.6645C7.59985 12.7521 6.98201 11.449 6.98201 10C6.98201 7.23435 9.23287 5 12 5C14.7671 5 17.018 7.23435 17.018 10C17.018 11.449 16.4001 12.7521 15.4139 13.6645C17.427 14.4833 19.0774 16.0046 20.0578 17.9235C21.2792 16.2651 22 14.2173 22 12C22 6.47715 17.5228 2 12 2ZM18.5844 19.5265C17.5805 16.8826 15.0118 15 12 15C8.98818 15 6.41953 16.8826 5.41557 19.5265C7.17529 21.0674 9.47791 22 12 22C14.5221 22 16.8247 21.0674 18.5844 19.5265ZM0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 15.3377 22.6361 18.3586 20.4376 20.5327C18.271 22.6753 15.2892 24 12 24C8.71079 24 5.72901 22.6753 3.56237 20.5327C1.36394 18.3586 0 15.3377 0 12ZM12 7C10.329 7 8.98201 8.34737 8.98201 10C8.98201 11.6526 10.329 13 12 13C13.671 13 15.018 11.6526 15.018 10C15.018 8.34737 13.671 7 12 7Z" fill="#B1AFAA"/>
+                                            </svg>                                            
+                                        </i>
+                                    </div>
+
+                                    <div class="adop-cart adop-item">
+                                        <div class="shop-cart__wrap">
+                                            <div class="cart-badge">
+                                                <span>13</span>
+                                            </div>
+                                            <a href="#" class="cart-group">
+                                                <div class="cart-left-icon">
+                                                    <i>
+                                                        <svg width="21" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                d="M0 1C0 0.447715 0.447715 0 1 0H3.4914C4.83084 0 6.008 0.887932 6.37597 2.17584L6.89716 4H18.9384C20.8902 4 22.3222 5.83417 21.8489 7.72761L20.3489 13.7276C20.015 15.0631 18.8151 16 17.4384 16H10.5086C9.16916 16 7.992 15.1121 7.62403 13.8242L4.45292 2.72528C4.33026 2.29598 3.93788 2 3.4914 2H1C0.447715 2 0 1.55228 0 1ZM7.46859 6L9.54708 13.2747C9.66974 13.704 10.0621 14 10.5086 14H17.4384C17.8973 14 18.2973 13.6877 18.4086 13.2425L19.9086 7.24253C20.0664 6.61139 19.589 6 18.9384 6H7.46859Z"
+                                                                fill="white" />
+                                                            <path
+                                                                d="M12 19.5C12 20.3284 11.3284 21 10.5 21C9.67157 21 9 20.3284 9 19.5C9 18.6716 9.67157 18 10.5 18C11.3284 18 12 18.6716 12 19.5Z"
+                                                                fill="white" />
+                                                            <path
+                                                                d="M19 19.5C19 20.3284 18.3284 21 17.5 21C16.6716 21 16 20.3284 16 19.5C16 18.6716 16.6716 18 17.5 18C18.3284 18 19 18.6716 19 19.5Z"
+                                                                fill="white" />
+                                                        </svg>
+                                                    </i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="header-bottom">
@@ -83,11 +137,27 @@
                                             <div class="info-phone__list">
                                                 <a href="tel:8 800 211-11-11" class="info-phone__item">8 800 211-11-11</a>
                                             </div>
-                                            <button class="phone-btn" data-hystmodal="#myModal">Еще</button>
+                                            <button class="phone-btn" data-hystmodal="#contact">Еще</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="header-info__right">
+
+                                    <div class="adop-folder__menu">
+                                        <div class="folder-menu__inner">
+                                            <div class="folder-menu__btn">
+                                                <span class="folder-menu__title">Категории</span>
+                                                <span class="folder-menu__icon">
+                                                    <i>
+                                                        <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 1C0 0.447715 0.447715 0 1 0H15C15.5523 0 16 0.447715 16 1C16 1.55228 15.5523 2 15 2H1C0.447715 2 0 1.55228 0 1ZM0 7C0 6.44772 0.447715 6 1 6H15C15.5523 6 16 6.44772 16 7C16 7.55228 15.5523 8 15 8H1C0.447715 8 0 7.55228 0 7ZM0 13C0 12.4477 0.447715 12 1 12H11C11.5523 12 12 12.4477 12 13C12 13.5523 11.5523 14 11 14H1C0.447715 14 0 13.5523 0 13Z" fill="#47A15D"/>
+                                                        </svg>                                        
+                                                    </i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="header-search-shop-cart__wrap">
                                         <form action="#" class="site-search">
                                             <input type="text" placeholder="Поиск..." class="site-search__panel">
@@ -108,7 +178,7 @@
                                             <a href="#" class="cart-group">
                                                 <div class="cart-left-icon">
                                                     <i>
-                                                        <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <svg width="21" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path fill-rule="evenodd" clip-rule="evenodd"
                                                                 d="M0 1C0 0.447715 0.447715 0 1 0H3.4914C4.83084 0 6.008 0.887932 6.37597 2.17584L6.89716 4H18.9384C20.8902 4 22.3222 5.83417 21.8489 7.72761L20.3489 13.7276C20.015 15.0631 18.8151 16 17.4384 16H10.5086C9.16916 16 7.992 15.1121 7.62403 13.8242L4.45292 2.72528C4.33026 2.29598 3.93788 2 3.4914 2H1C0.447715 2 0 1.55228 0 1ZM7.46859 6L9.54708 13.2747C9.66974 13.704 10.0621 14 10.5086 14H17.4384C17.8973 14 18.2973 13.6877 18.4086 13.2425L19.9086 7.24253C20.0664 6.61139 19.589 6 18.9384 6H7.46859Z"
                                                                 fill="white" />
@@ -152,6 +222,71 @@
 
                 <div class="folder-main__wrap container">
                     <div class="folder-menu-slider__wrap">
+
+                        <div class="folder-adop__wrap">
+
+                            <div class="folder-adop__menu">
+                                <div class="folder-menu__btn">
+                                    <span class="folder-menu__title">Категории</span>
+                                    <span class="folder-menu__icon">
+                                        <i>
+                                            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 1C0 0.447715 0.447715 0 1 0H15C15.5523 0 16 0.447715 16 1C16 1.55228 15.5523 2 15 2H1C0.447715 2 0 1.55228 0 1ZM0 7C0 6.44772 0.447715 6 1 6H15C15.5523 6 16 6.44772 16 7C16 7.55228 15.5523 8 15 8H1C0.447715 8 0 7.55228 0 7ZM0 13C0 12.4477 0.447715 12 1 12H11C11.5523 12 12 12.4477 12 13C12 13.5523 11.5523 14 11 14H1C0.447715 14 0 13.5523 0 13Z" fill="#47A15D"/>
+                                            </svg>                                        
+                                        </i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="folder-adop__search">
+                                <form action="#" class="site-search">
+                                    <input type="text" placeholder="Поиск..." class="site-search__panel">
+                                    <button type="submit" class="site-search__btn">
+                                        <i>
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M9 2C5.13401 2 2 5.13401 2 9C2 12.866 5.13401 16 9 16C10.9333 16 12.6819 15.2176 13.9497 13.9497C15.2176 12.6819 16 10.9333 16 9C16 5.13401 12.866 2 9 2ZM0 9C0 4.02944 4.02944 0 9 0C13.9706 0 18 4.02944 18 9C18 11.1246 17.2628 13.0784 16.0319 14.6176L21.7071 20.2929C22.0976 20.6834 22.0976 21.3166 21.7071 21.7071C21.3166 22.0976 20.6834 22.0976 20.2929 21.7071L14.6176 16.0319C13.0784 17.2628 11.1246 18 9 18C4.02944 18 0 13.9706 0 9Z"
+                                                    fill="#B1AFAA" />
+                                            </svg>
+                                        </i>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="folder-adop__cart">
+                                <a href="#" class="cart-group">
+                                    <div class="cart-left-icon">
+                                        <i>
+                                            <svg width="21" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M0 1C0 0.447715 0.447715 0 1 0H3.4914C4.83084 0 6.008 0.887932 6.37597 2.17584L6.89716 4H18.9384C20.8902 4 22.3222 5.83417 21.8489 7.72761L20.3489 13.7276C20.015 15.0631 18.8151 16 17.4384 16H10.5086C9.16916 16 7.992 15.1121 7.62403 13.8242L4.45292 2.72528C4.33026 2.29598 3.93788 2 3.4914 2H1C0.447715 2 0 1.55228 0 1ZM7.46859 6L9.54708 13.2747C9.66974 13.704 10.0621 14 10.5086 14H17.4384C17.8973 14 18.2973 13.6877 18.4086 13.2425L19.9086 7.24253C20.0664 6.61139 19.589 6 18.9384 6H7.46859Z"
+                                                    fill="white" />
+                                                <path
+                                                    d="M12 19.5C12 20.3284 11.3284 21 10.5 21C9.67157 21 9 20.3284 9 19.5C9 18.6716 9.67157 18 10.5 18C11.3284 18 12 18.6716 12 19.5Z"
+                                                    fill="white" />
+                                                <path
+                                                    d="M19 19.5C19 20.3284 18.3284 21 17.5 21C16.6716 21 16 20.3284 16 19.5C16 18.6716 16.6716 18 17.5 18C18.3284 18 19 18.6716 19 19.5Z"
+                                                    fill="white" />
+                                            </svg>
+                                        </i>
+                                    </div>
+                                    <div class="cart-desc">
+                                        13 330<span>р.</span>
+                                    </div>
+                                    <div class="cart-right-icon">
+                                        <i>
+                                            <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L7.41421 6L1.70711 11.7071C1.31658 12.0976 0.683417 12.0976 0.292893 11.7071C-0.0976311 11.3166 -0.0976311 10.6834 0.292893 10.2929L4.58579 6L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z"
+                                                    fill="white" />
+                                            </svg>
+                                        </i>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+
                         <div class="folder-menu__inner">
                             <div class="folder-menu__btn">
                                 <span class="folder-menu__title">Категории</span>
@@ -270,7 +405,7 @@
                                 <img src="/src/image/categories-block_2.png" alt="">
                             </div>
                             <div class="categories-block__info">
-                                <div class="categories-block__title">Овощи и Фрукты</div>
+                                <div class="categories-block__title">Молочная продукция</div>
                                 <a href="#" class="categories-block__btn">перейти</a>
                             </div>
                         </div>
@@ -279,7 +414,7 @@
                                 <img src="/src/image/categories-block_3.png" alt="">
                             </div>
                             <div class="categories-block__info">
-                                <div class="categories-block__title">Овощи и Фрукты</div>
+                                <div class="categories-block__title">Полуфабрикаты</div>
                                 <a href="#" class="categories-block__btn">перейти</a>
                             </div>
                         </div>
@@ -288,7 +423,7 @@
                                 <img src="/src/image/categories-block_4.png" alt="">
                             </div>
                             <div class="categories-block__info">
-                                <div class="categories-block__title">Овощи и Фрукты</div>
+                                <div class="categories-block__title">Хлеб</div>
                                 <a href="#" class="categories-block__btn">перейти</a>
                             </div>
                         </div>
@@ -297,7 +432,7 @@
                                 <img src="/src/image/categories-block_5.png" alt="">
                             </div>
                             <div class="categories-block__info">
-                                <div class="categories-block__title">Овощи и Фрукты</div>
+                                <div class="categories-block__title">Рыба</div>
                                 <a href="#" class="categories-block__btn">перейти</a>
                             </div>
                         </div>
@@ -306,7 +441,7 @@
                                 <img src="/src/image/categories-block_6.png" alt="">
                             </div>
                             <div class="categories-block__info">
-                                <div class="categories-block__title">Овощи и Фрукты</div>
+                                <div class="categories-block__title">Птица</div>
                                 <a href="#" class="categories-block__btn">перейти</a>
                             </div>
                         </div>
@@ -886,6 +1021,11 @@
                             </div>
                         </div>
                         <div class="page-main__right">
+                            <div class="page-main__image">
+                                <span>
+                                    <img src="../image/page-main_1.png" alt="">
+                                </span>
+                            </div>
                             <div class="page-main__info">
                                 <div class="page-main-info__title">Условия доставки!</div>
                                 <div class="page-main-info__desc">
@@ -935,9 +1075,9 @@
                                         Брала у вас пол кило Айвы блин ваще четкая, мелкая но как мед, всем советую этот магазин!
                                     </div>
                                 </div>
-                                <div class="reviews-arrow">
-                                    <a href="#">Все отзывы</a>
-                                </div>
+                            </div>
+                            <div class="reviews-arrow">
+                                <a href="#">Все отзывы</a>
                             </div>
                         </div>
                         <div class="news-wrap">
@@ -1045,7 +1185,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="site-copy">© 2019</div>
+                                    <div class="site-copy">© 2024</div>
                                 </div>
                                 <div class="footer-menu">
                                     <nav class="footer-menu container">
@@ -1208,6 +1348,15 @@
 
             <!-- Подвал сайта -->
 
+        </div>
+
+        <div class="hystmodal" id="contact" aria-hidden="true">
+            <div class="hystmodal__wrap">
+                <div class="hystmodal__window" role="dialog" aria-modal="true">
+                    <button data-hystclose class="hystmodal__close">Закрыть</button>
+                    
+                </div>
+            </div>
         </div>
 
         <!-- скрипты -->

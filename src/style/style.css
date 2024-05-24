@@ -108,43 +108,43 @@ html, body {
 @media (max-width: 1440px) {
 
     .header-top__wrap {
-        padding: 0px 20px;
+        padding: 0px 30px;
     }
 
     .header-bottom {
-        padding: 0px 20px;
+        padding: 0px 30px;
     }
 
     .main-inner {
-        padding: 0px 20px;
+        padding: 0px 30px;
     }
 
     .footer-top__wrap {
-        padding: 0px 20px;
+        padding: 0px 30px;
     }
 
     .footer-bottom__wrap {
-        padding: 0px 20px;
+        padding: 0px 30px;
     }
 
     .folder-main {
-        padding: 0px 20px;
+        padding: 0px 30px;
     }
 
     .categories-block {
-        padding: 0px 20px;
+        padding: 0px 30px;
     }
 
     .product-main {
-        padding: 0px 20px;
+        padding: 0px 30px;
     }
 
     .page-main {
-        padding: 0px 20px;
+        padding: 0px 30px;
     }
 
     .reviews-news {
-        padding: 0px 20px;
+        padding: 0px 30px;
     }
 }
 
@@ -154,8 +154,61 @@ html, body {
     background-color: #F4F4F4;
 }
 
-.header-menu {
+.header-top__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 19px 0px 22px 0px;
+}
+
+.header-adop__info {
+    display: none;
+    align-items: center;
+}
+
+.header-adop__info .adop-item {
+    margin-right: 31px;
+}
+
+.header-adop__info .adop-item:last-child {
+    margin: 0;
+}
+
+.adop-cart .shop-cart__wrap {
+    height: 53px;
+    padding: 17px 23px 17px 20px;
+}
+
+.adop-cart .shop-cart__wrap .cart-left-icon {
+    margin: 0;
+}
+
+.adop-cart .shop-cart__wrap .cart-badge {
+    margin-right: 12px;
+    padding: 4px 11px 3px 7px;
+}
+
+.adop-search {
+    cursor: pointer;
+    display: none;
+}
+
+.adop-contact {
+    cursor: pointer;
+    display: none;
+}
+
+.adop-user {
+    cursor: pointer;
+    display: none;
+}
+
+.adop-cart {
+    display: none;
+}
+
+.header-menu {
+    
 }
 
 .header-menu__list {
@@ -273,6 +326,7 @@ html, body {
 }
 
 .phone-btn {
+    font-size: 16px;
     color: #47A15D;
     padding-bottom: 2px;
     border-bottom: 1px dashed #47A15D;
@@ -639,14 +693,19 @@ button {}
 
 .folder-menu-slider__wrap {
     display: flex;
+    flex-wrap: wrap;
 }
 
-.folder-menu__inner  {
+.folder-menu__inner {
     width: 50%;
     max-width: 327px;
     padding: 40px;
     margin-right: 30px;
     background: #1A654B;
+}
+
+.adop-folder__menu {
+    display: none;
 }
 
 .folder-menu__btn {
@@ -704,6 +763,7 @@ button {}
 
 .folder-slider {
     position: relative;
+    width: 100%;
     height: 593px;
 }
 .folder-slider__item {
@@ -857,9 +917,13 @@ button {}
     top: auto;
     bottom: 30px;
     left: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .categories-block__title {
+    display: inline-block;
     background: #FFCD1C;
     color: #fff;
     padding: 11px 20px;
@@ -1187,17 +1251,34 @@ h1.site-title {
 }
 
 .page-main__right {
+    position: relative;
     width: 50%;
     height: 471px;
     max-width: 684px;
     padding: 60px;
     display: flex;
     align-items: flex-start;
-    background-image: url(/src/image/page-main_1.png);
-    background-position: 85% 100%;
-    background-repeat: no-repeat;
-    background-size: inherit;
     background-color: #F4F4F4;
+}
+
+.page-main__image {
+    position: absolute;
+    bottom: 0;
+    right: 50px;
+    font-size: 0;
+}
+
+.page-main__image span {
+    display: block;
+    font-size: 0;
+    width: 345px;
+    height: 423px;
+}
+
+.page-main__image span img {
+    width: 100%;
+    height: 100%;
+    object-position: center;
 }
 
 .site-content {
@@ -1210,7 +1291,7 @@ h1.site-title {
 }
 
 .page-main-info__title {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 29px;
     line-height: 34.37px;
     text-align: left;
@@ -1273,7 +1354,6 @@ h1.site-title {
 .reviews-wrap__title {
     font-weight: 400;
     font-size: 30px;
-    line-height: 35.55px;
     text-align: left;
     color: #3D3D3D;
 }
@@ -1331,6 +1411,7 @@ h1.site-title {
     text-align: left;
     color: #ffff;
     transition: 0.3s;
+    margin-top: 30px;
 }
 
 .reviews-arrow a:hover {
@@ -1357,6 +1438,7 @@ h1.site-title {
 
 .news-wrap-info__left {
     margin-right: 30px;
+    overflow: hidden;
 }
 
 .news-wrap-info__list {
@@ -1447,8 +1529,10 @@ h1.site-title {
 }
 
 .news-wrap-box__list {
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .news-wrap-box__item {
@@ -1470,6 +1554,13 @@ span.news-wrap-box__image {
     height: 100%;
     position: absolute;
     z-index: auto;
+}
+
+span.news-wrap-box__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .news-wrap-box__info {
@@ -1530,3 +1621,213 @@ span.news-wrap-box__image {
     background: rgba(26, 101, 75, 0.85);
     transition: 0.3s;
 }
+
+.folder-adop__wrap {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 38px;
+    margin-bottom: 30px;
+}
+
+/* adop style */
+
+@media (max-width: 1366px) {
+
+    .news-wrap-info__top {
+        width: auto;
+        height: 291px;
+    }
+}
+
+@media (max-width: 1280px) {
+
+    .news-wrap-info__top {
+        height: 248px;
+    }
+
+    .folder-link__item {
+        height: 270px;
+        padding: 10px;
+    }
+
+    .folder-link__item:nth-child(odd) {
+        background-position: 95% 20px;
+        background-size: contain;
+    }
+
+    .categories-block__title {
+        font-size: 15px;
+    }
+
+    .folder-link__title {
+        font-size: 21px;
+    }
+
+    .product-wrap__title {
+        font-size: 40px;
+    }
+
+    h1.site-title {
+        font-size: 40px;
+    }
+
+    .page-main-info__title {
+        font-size: 23px;
+    }
+
+    .news-wrap__title {
+        font-size: 40px;
+    }
+
+    .reviews-wrap {
+        width: 100%;
+        max-width: 100%;
+        margin-right: 0;
+        margin-bottom: 70px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .reviews-wrap__title {
+        display: inline-block;
+        font-size: 40px;
+        font-weight: 600;
+        order: 1;
+    }
+
+    .reviews-wrap__title br {
+        display: none;
+    }
+
+    .reviews-arrow {
+        display: inline-block;
+        order: 2;
+    }
+
+    .reviews-arrow a {
+        margin: 0;
+    }
+
+    .reviews-wrap__list {
+        display: flex;
+        width: 100%;
+        order: 3;
+    }
+
+    .reviews-desc {
+        padding: 0 50px 0 0;
+    }
+
+    .news-wrap-info__item {
+        max-width: 310px;
+    }
+
+    .news-wrap-box__item {
+        width: 310px;
+        height: 242px;
+        margin-bottom: 29px;
+    }
+
+    .logo {
+        font-size: 27px;
+    }
+
+    .logo-text .subtitle {
+        font-size: 16px;
+    }
+    
+}
+
+@media (max-width: 1024px) {
+
+    .product-wrap__top {
+        padding: 20px;
+    }
+
+    .product-wrap__botto {
+        padding: 0px 20px 0px 20px;
+    }
+
+    .prod-image span {
+        width: 178px;
+        height: 178px;
+    }
+
+    .prod-btn {
+        margin: 25px -20px 0;
+    }
+
+    .card-btn {
+        padding: 15px 22px 15px 21px;
+    }
+
+    .prod-name a {
+        font-size: 16px;
+    }
+
+    .page-main__left {
+        max-width: 443px;
+        padding-right: 54px;
+    }
+
+    .page-main__right {
+        max-width: 467px;
+        height: 366px;
+        padding: 50px 23px 40px 40px;
+    }
+
+    .page-main__info {
+        max-width: 259px;
+    }
+
+    .page-main__image {
+        right: 23px;
+    }
+
+    .page-main__image span {
+        width: 235px;
+        height: 288px;
+    }
+
+    .page-main__inner {
+        padding: 70px 0px 0px 0px;
+    }
+
+    .reviews-news__inner {
+        padding: 70px 0px 120px 0;
+    }
+
+    .folder-link-wrap {
+        margin: 70px 0;
+    }
+
+    .product-main__inner {
+        margin-top: 70px;
+    }
+
+    .categories-block__item {
+        height: 218px;
+    }
+
+    .categories-block__info {
+        bottom: 20px;
+        left: 20px;
+    }
+
+    .categories-block__title {
+        padding: 11px 15px;
+    }
+
+    .categories-block__btn {
+        padding: 14px 15px;
+    }
+
+    .folder-menu__inner {
+        display: none;
+    }
+}
+
+/* adop style */

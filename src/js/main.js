@@ -75,6 +75,10 @@ myObj.queue = {
 
     folderMainSlider: function name(params) {
         var swiper = new Swiper(".folder-slider", {
+            loop: true,
+            autoplay: {
+                delay: 100000,
+            },
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev'
@@ -84,12 +88,22 @@ myObj.queue = {
 
     prodSlider: function name(params) {
         var swiper = new Swiper(".product-wrap", {
+            loop: true,
+            autoplay: {
+                delay: 100000,
+            },
             slidesPerView: 4,
             spaceBetween: 30,
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev'
             },
+        });
+    },
+
+    modal: function name(params) {
+        const myModal = new HystModal({
+            linkAttributeName: "data-hystmodal",
         });
     }
 }
