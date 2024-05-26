@@ -51,26 +51,46 @@ myObj.queue = {
     },
 
     folderMenu: function name(params) {
-        var folderMenu = document.querySelector('.folder-menu__list');
+        var folderMenu = document.querySelector('.no-adop__folder');
         var folderArrow = document.querySelector('.folder-arrow');
 
         var hiddenItems = Array.from(folderMenu.children).slice(7);
-            hiddenItems.forEach(function(item) {
+        hiddenItems.forEach(function (item) {
             item.style.display = 'none';
         });
 
         if (folderMenu.children.length > 7) {
-            folderArrow.classList.add('activ');
-        };
+            folderArrow.classList.add('active');
+        }
 
-        folderArrow.addEventListener('click', function() {
-        hiddenItems.forEach(function(item) {
-            item.style.display = item.style.display === 'none' ? 'block' : 'none';
-        });
+        folderArrow.addEventListener('click', function () {
+            hiddenItems.forEach(function (item) {
+                item.style.display = item.style.display === 'none' ? 'list-item' : 'none';
+            });
 
-        var buttonText = folderArrow.textContent.trim();
+            var buttonText = folderArrow.textContent.trim();
             folderArrow.textContent = buttonText === 'Еще категории' ? 'Скрыть категории' : 'Еще категории';
         });
+
+        const folderAdopBtn = document.querySelector('.folder-adop__menu');
+        const folderAdopMenu = document.querySelector('.folder-menu');
+
+        folderAdopBtn.addEventListener('click', function name(params) {
+            folderAdopMenu.classList.toggle('active')
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && folderAdopMenu.classList.contains('active')) {
+                folderAdopMenu.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!folderAdopMenu.contains(event.target) && !folderAdopBtn.contains(event.target) && folderAdopMenu.classList.contains('active')) {
+                folderAdopMenu.classList.remove('active');
+            }
+        });
+
     },
 
     folderMainSlider: function name(params) {
@@ -105,5 +125,29 @@ myObj.queue = {
         const myModal = new HystModal({
             linkAttributeName: "data-hystmodal",
         });
+    },
+
+    listBox: function name(params) {
+        var items = document.querySelectorAll('.header-adop__info .adop-item');
+
+        function updateItemMargins() {
+            items.forEach(function (item) {
+                item.style.marginRight = '31px';
+            });
+
+            var visibleItems = Array.from(items).filter(function (item) {
+                return getComputedStyle(item).display !== 'none';
+            });
+
+            if (visibleItems.length === 0) {
+                return;
+            }
+
+            visibleItems[visibleItems.length - 1].style.marginRight = '0';
+
+            if (visibleItems.length === 2 || visibleItems.length === 3) {
+                visibleItems[visibleItems.length - 1].style.marginRight = '0';
+            }
+        }
     }
 }
