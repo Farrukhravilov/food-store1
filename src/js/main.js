@@ -19,6 +19,60 @@ document.addEventListener('DOMContentLoaded', function () {
 
 myObj.queue = {
 
+    burgerMenu: function () {
+        const burgerBtn = document.querySelector('.burger-btn');
+        const burgerWrap = document.querySelector('.burger-container');
+        const burgerBody = document.querySelector('body');
+        const headerMenuList = document.querySelector('.header-menu__list');
+        const folderMenuList = document.querySelector('.folder-menu__list');
+        const mainMenu = document.querySelector('.main-menu');
+        const mainFolder = document.querySelector('.main-folder');
+
+        burgerBtn.addEventListener('click', function () {
+            burgerBtn.classList.toggle('active');
+            burgerWrap.classList.toggle('active');
+            burgerBody.classList.toggle('overflo');
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                burgerBtn.classList.remove('active');
+                burgerWrap.classList.remove('active');
+                burgerBody.classList.remove('overflo');
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!burgerWrap.contains(e.target) && !burgerBtn.contains(e.target)) {
+                burgerBtn.classList.remove('active');
+                burgerWrap.classList.remove('active');
+                burgerBody.classList.remove('overflo');
+            }
+        });
+
+        function moveMenus() {
+            if (window.innerWidth <= 660) {
+                if (!mainMenu.contains(headerMenuList)) {
+                    mainMenu.appendChild(headerMenuList);
+                }
+                if (!mainFolder.contains(folderMenuList)) {
+                    mainFolder.appendChild(folderMenuList);
+                }
+            } else {
+                if (mainMenu.contains(headerMenuList)) {
+                    document.querySelector('.header-menu').appendChild(headerMenuList);
+                }
+                if (mainFolder.contains(folderMenuList)) {
+                    document.querySelector('.folder-menu').appendChild(folderMenuList);
+                }
+            }
+        }
+
+        moveMenus();
+
+        window.addEventListener('resize', moveMenus);
+    },
+
     menuTarger: function name(params) {
         var currentUrl = window.location.href;
 
@@ -97,7 +151,7 @@ myObj.queue = {
         var swiper = new Swiper(".folder-slider", {
             loop: true,
             autoplay: {
-                delay: 100000,
+                delay: 5000,
             },
             navigation: {
                 nextEl: '.swiper-button-next',
@@ -109,15 +163,33 @@ myObj.queue = {
     prodSlider: function name(params) {
         var swiper = new Swiper(".product-wrap", {
             loop: true,
-            autoplay: {
-                delay: 100000,
-            },
+            // autoplay: {
+            //     delay: 5000,
+            // },   
             slidesPerView: 4,
             spaceBetween: 30,
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev'
             },
+            breakpoints: {
+                480: {
+                    slidesPerView: 1,
+                    spaceBetween: 30
+                },
+                660: {
+                    slidesPerView: 2,
+                    spaceBetween: 30
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 30
+                }
+            }
         });
     },
 
