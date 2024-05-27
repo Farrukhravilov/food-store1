@@ -163,9 +163,9 @@ myObj.queue = {
     prodSlider: function name(params) {
         var swiper = new Swiper(".product-wrap", {
             loop: true,
-            // autoplay: {
-            //     delay: 5000,
-            // },   
+            autoplay: {
+                delay: 5000,
+            },
             slidesPerView: 4,
             spaceBetween: 30,
             navigation: {
@@ -173,6 +173,10 @@ myObj.queue = {
                 prevEl: '.swiper-button-prev'
             },
             breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 30
+                },
                 480: {
                     slidesPerView: 1,
                     spaceBetween: 30
