@@ -245,8 +245,9 @@ myObj.queue = {
         const thumbsButton = document.querySelector('.folder-change__item.thumbs-in');
         const simpleButton = document.querySelector('.folder-change__item.simple-in');
         const listButton = document.querySelector('.folder-change__item.list-in');
+        const paginationBlock = document.querySelector('.shop-pagelist__body');
 
-        if (!folderProductList || !thumbsButton || !simpleButton || !listButton) {
+        if (!folderProductList || !thumbsButton || !simpleButton || !listButton || !paginationBlock) {
             console.error('One or more required elements are not found in the DOM.');
             return;
         }
@@ -295,7 +296,6 @@ myObj.queue = {
             } else {
                 simpleButton.style.display = 'inline-block';
                 listButton.style.display = 'inline-block';
-                // Reset the view mode to the saved cookie value if not thumbs
                 const savedViewMode = getCookie('folderViewMode');
                 if (savedViewMode && savedViewMode !== 'thumbs') {
                     changeClass(savedViewMode);
@@ -346,113 +346,113 @@ myObj.queue = {
         const manageProductDisplay = () => {
             const products = [...folderProductList.children];
             const maxDisplayCount = 8;
+            const totalPages = Math.ceil(products.length / maxDisplayCount);
 
             if (products.length > maxDisplayCount) {
-                const excessProducts = products.slice(maxDisplayCount);
-                const excessProductIds = excessProducts.map(product => product.dataset.productId);
+                document.querySelector('.shop-pagelist').classList.remove('hide');
+            } else {
+                document.querySelector('.shop-pagelist').classList.add('hide');
+            }
 
-                setCookie('excessProductIds', JSON.stringify(excessProductIds), 7);
+            updateProductDisplay(1);
+            createPagination(totalPages);
+            addPaginationEventListeners(totalPages);
+        };
 
-                excessProducts.forEach(product => {
-                    product.remove();
+        const createPagination = (totalPages) => {
+            const pagePrev = paginationBlock.querySelector('.page-prev');
+            const pageNext = paginationBlock.querySelector('.page-next');
+
+            let paginationHTML = [];
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHTML.push(`
+                <li class="page-num ${i === 1 ? 'active' : ''}">
+                    ${i === 1 ? `<span>${i}</span>` : `<a href="?page=-${i}" data-page="${i}">${i}</a>`}
+                </li>
+            `);
+            }
+
+            paginationBlock.innerHTML = '';
+            paginationBlock.appendChild(pagePrev);
+            paginationBlock.innerHTML += paginationHTML.join('');
+            paginationBlock.appendChild(pageNext);
+        };
+
+        const addPaginationEventListeners = (totalPages) => {
+            const paginationLinks = paginationBlock.querySelectorAll('a[data-page]');
+            paginationLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const page = parseInt(event.target.dataset.page, 10);
+                    updateProductDisplay(page);
+                    updatePagination(page, totalPages);
+                    updateURL(page);
                 });
-            }
-        };
-
-        manageProductDisplay();
-    },
-
-    folderPageList: function name(params) {
-        const folderProductList = document.querySelector('.folder-product__list');
-        const prevButton = document.querySelector('.shop-pagelist .page-prev');
-        const nextButton = document.querySelector('.shop-pagelist .page-next');
-        const paginationBody = document.querySelector('.shop-pagelist__body');
-
-        if (!folderProductList || !prevButton || !nextButton || !paginationBody) {
-            console.error('One or more required elements are not found in the DOM.');
-            return;
-        }
-
-        const setCookie = (name, value, days) => {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            const expires = "expires=" + date.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path=/";
-        };
-
-        const getCookie = (name) => {
-            const nameEQ = name + "=";
-            const ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        };
-
-        let currentPage = parseInt(getCookie('currentPage')) || 1;
-        const productsPerPage = 8;
-
-        const manageProductDisplay = () => {
-            const products = Array.from(folderProductList.children);
-            const totalPages = Math.ceil(products.length / productsPerPage);
-
-            if (currentPage > totalPages) {
-                currentPage = totalPages;
-            }
-
-            products.forEach((product, index) => {
-                product.style.display = (index >= (currentPage - 1) * productsPerPage && index < currentPage * productsPerPage) ? 'block' : 'none';
             });
 
-            updatePagination(totalPages);
-            setCookie('currentPage', currentPage, 7);
-        };
-
-        const updatePagination = (totalPages) => {
-            paginationBody.querySelectorAll('.page-num').forEach(num => num.remove());
-
-            for (let i = 1; i <= totalPages; i++) {
-                const pageNum = document.createElement('li');
-                pageNum.classList.add('page-num');
-                if (i === currentPage) pageNum.classList.add('active-num');
-
-                const pageLink = document.createElement('a');
-                pageLink.href = '#';
-                pageLink.textContent = i;
-                pageLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    currentPage = i;
-                    manageProductDisplay();
+            const prevLink = paginationBlock.querySelector('.page-prev a');
+            if (prevLink) {
+                prevLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const currentPage = parseInt(paginationBlock.querySelector('.page-num.active span').innerText, 10);
+                    if (currentPage > 1) {
+                        updateProductDisplay(currentPage - 1);
+                        updatePagination(currentPage - 1, totalPages);
+                        updateURL(currentPage - 1);
+                    }
                 });
-
-                pageNum.appendChild(pageLink);
-                nextButton.before(pageNum);
             }
 
-            prevButton.classList.toggle('not_active', currentPage === 1);
-            nextButton.classList.toggle('not_active', currentPage === totalPages);
+            const nextLink = paginationBlock.querySelector('.page-next a');
+            if (nextLink) {
+                nextLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const currentPage = parseInt(paginationBlock.querySelector('.page-num.active span').innerText, 10);
+                    if (currentPage < totalPages) {
+                        updateProductDisplay(currentPage + 1);
+                        updatePagination(currentPage + 1, totalPages);
+                        updateURL(currentPage + 1);
+                    }
+                });
+            }
         };
 
-        prevButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (currentPage > 1) {
-                currentPage--;
-                manageProductDisplay();
-            }
-        });
+        const updateProductDisplay = (activePage) => {
+            const products = [...folderProductList.children];
+            const maxDisplayCount = 8;
+            const start = (activePage - 1) * maxDisplayCount;
+            const end = start + maxDisplayCount;
 
-        nextButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            const products = Array.from(folderProductList.children);
-            const totalPages = Math.ceil(products.length / productsPerPage);
+            products.forEach((product, index) => {
+                product.style.display = (index >= start && index < end) ? '' : 'none';
+            });
+        };
 
-            if (currentPage < totalPages) {
-                currentPage++;
-                manageProductDisplay();
-            }
-        });
+        const updatePagination = (activePage, totalPages) => {
+            const paginationItems = paginationBlock.querySelectorAll('.page-num');
+            paginationItems.forEach(item => {
+                if (item.classList.contains('active')) {
+                    const pageNum = item.querySelector('span').innerText;
+                    item.innerHTML = `<a href="?page=-${pageNum}" data-page="${pageNum}">${pageNum}</a>`;
+                    item.classList.remove('active');
+                }
+            });
+
+            const activeItem = paginationBlock.querySelector(`.page-num a[data-page="${activePage}"]`).parentElement;
+            activeItem.innerHTML = `<span>${activePage}</span>`;
+            activeItem.classList.add('active');
+
+            const prevButton = paginationBlock.querySelector('.page-prev');
+            const nextButton = paginationBlock.querySelector('.page-next');
+
+            prevButton.classList.toggle('no-link', activePage === 1);
+            nextButton.classList.toggle('no-link', activePage === totalPages);
+        };
+
+        const updateURL = (page) => {
+            const newURL = `${window.location.pathname}?page=-${page}`;
+            window.history.pushState({ path: newURL }, '', newURL);
+        };
 
         manageProductDisplay();
     },

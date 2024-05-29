@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
+::selection {
+    background-color: #FFCD1C; /* Цвет фона выделения */
+    color: #FFFFFF;           /* Цвет текста в выделении */
+}
+
 html, body, div, span, applet, object, iframe,
 blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -2231,5 +2236,128 @@ span.news-wrap-box__image img {
 
 
 
+.shop-pagelist.hide {
+    display: none;
+}
+
+.shop-pagelist {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin-top: 70px;
+}
+
+.shop-pagelist__body {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    background: #1A654B;
+}
+
+.shop-pagelist__body .page-prev.no-link {
+    pointer-events: none;
+}
+
+.shop-pagelist__body .page-next.no-link {
+    pointer-events: none;
+}
+
+.shop-pagelist__body .page-prev {
+    margin-right: 41px;
+    width: 60px;
+    height: 60px;
+    background: #47A15D;
+    transition: 0.3s;
+}
+
+.shop-pagelist__body .page-next {
+    margin-left: 41px;
+    width: 60px;
+    height: 60px;
+    background: #47A15D;
+    transition: 0.3s;
+}
+
+.shop-pagelist__body .page-prev a:hover {
+    background: #1A654B;
+}
+
+.shop-pagelist__body .page-next a:hover {
+    background: #1A654B;
+}
+
+.shop-pagelist__body .page-prev a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.shop-pagelist__body .page-next a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.shop-pagelist__body .page-prev a span {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.shop-pagelist__body .page-next a span {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.shop-pagelist__body .page-prev a span i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.shop-pagelist__body .page-next a span i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.page-num {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+}
+
+.page-num a {
+    display: block;
+    line-height: normal;
+    padding: 20px;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.page-num.active a {
+    color: #FFCD1C;
+}
+
+.page-num span {
+    color: #fff;
+}
+
+.page-num.active span {
+    color: #FFCD1C;
+    display: block;
+    padding: 20px;
+    line-height: normal;
+}
+
+.page-num a:hover {
+    color: #FFCD1C;
+}
 
 /* Товары в витрине */
