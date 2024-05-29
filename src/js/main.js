@@ -342,6 +342,119 @@ myObj.queue = {
         window.addEventListener('resize', handleResize);
 
         handleResize();
+
+        const manageProductDisplay = () => {
+            const products = [...folderProductList.children];
+            const maxDisplayCount = 8;
+
+            if (products.length > maxDisplayCount) {
+                const excessProducts = products.slice(maxDisplayCount);
+                const excessProductIds = excessProducts.map(product => product.dataset.productId);
+
+                setCookie('excessProductIds', JSON.stringify(excessProductIds), 7);
+
+                excessProducts.forEach(product => {
+                    product.remove();
+                });
+            }
+        };
+
+        manageProductDisplay();
+    },
+
+    folderPageList: function name(params) {
+        const folderProductList = document.querySelector('.folder-product__list');
+        const prevButton = document.querySelector('.shop-pagelist .page-prev');
+        const nextButton = document.querySelector('.shop-pagelist .page-next');
+        const paginationBody = document.querySelector('.shop-pagelist__body');
+
+        if (!folderProductList || !prevButton || !nextButton || !paginationBody) {
+            console.error('One or more required elements are not found in the DOM.');
+            return;
+        }
+
+        const setCookie = (name, value, days) => {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        };
+
+        const getCookie = (name) => {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        };
+
+        let currentPage = parseInt(getCookie('currentPage')) || 1;
+        const productsPerPage = 8;
+
+        const manageProductDisplay = () => {
+            const products = Array.from(folderProductList.children);
+            const totalPages = Math.ceil(products.length / productsPerPage);
+
+            if (currentPage > totalPages) {
+                currentPage = totalPages;
+            }
+
+            products.forEach((product, index) => {
+                product.style.display = (index >= (currentPage - 1) * productsPerPage && index < currentPage * productsPerPage) ? 'block' : 'none';
+            });
+
+            updatePagination(totalPages);
+            setCookie('currentPage', currentPage, 7);
+        };
+
+        const updatePagination = (totalPages) => {
+            paginationBody.querySelectorAll('.page-num').forEach(num => num.remove());
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageNum = document.createElement('li');
+                pageNum.classList.add('page-num');
+                if (i === currentPage) pageNum.classList.add('active-num');
+
+                const pageLink = document.createElement('a');
+                pageLink.href = '#';
+                pageLink.textContent = i;
+                pageLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    currentPage = i;
+                    manageProductDisplay();
+                });
+
+                pageNum.appendChild(pageLink);
+                nextButton.before(pageNum);
+            }
+
+            prevButton.classList.toggle('not_active', currentPage === 1);
+            nextButton.classList.toggle('not_active', currentPage === totalPages);
+        };
+
+        prevButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (currentPage > 1) {
+                currentPage--;
+                manageProductDisplay();
+            }
+        });
+
+        nextButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            const products = Array.from(folderProductList.children);
+            const totalPages = Math.ceil(products.length / productsPerPage);
+
+            if (currentPage < totalPages) {
+                currentPage++;
+                manageProductDisplay();
+            }
+        });
+
+        manageProductDisplay();
     },
 
     sortingPanel: function name(params) {
