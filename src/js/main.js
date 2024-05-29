@@ -251,9 +251,32 @@ myObj.queue = {
             return;
         }
 
+        const setCookie = (name, value, days) => {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        };
+
+        const getCookie = (name) => {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        };
+
         const changeClass = (newClass) => {
             folderProductList.className = 'folder-product__list';
-            folderProductList.classList.add(newClass);
+            if (window.innerWidth > 479 || newClass === 'thumbs') {
+                folderProductList.classList.add(newClass);
+            } else {
+                folderProductList.classList.add('thumbs');
+            }
+            setCookie('folderViewMode', newClass, 7);
         };
 
         const setActiveButton = (activeButton) => {
@@ -263,11 +286,44 @@ myObj.queue = {
             activeButton.classList.add('active');
         };
 
-        // Устанавливаем начальный класс и активную кнопку
-        changeClass('thumbs');
-        setActiveButton(thumbsButton);
+        const handleResize = () => {
+            if (window.innerWidth <= 479) {
+                simpleButton.style.display = 'none';
+                listButton.style.display = 'none';
+                changeClass('thumbs');
+                setActiveButton(thumbsButton);
+            } else {
+                simpleButton.style.display = 'inline-block';
+                listButton.style.display = 'inline-block';
+                // Reset the view mode to the saved cookie value if not thumbs
+                const savedViewMode = getCookie('folderViewMode');
+                if (savedViewMode && savedViewMode !== 'thumbs') {
+                    changeClass(savedViewMode);
+                    if (savedViewMode === 'simple') {
+                        setActiveButton(simpleButton);
+                    } else if (savedViewMode === 'list') {
+                        setActiveButton(listButton);
+                    }
+                }
+            }
+        };
 
-        // Добавление обработчиков кликов для каждой кнопки
+        const savedViewMode = getCookie('folderViewMode');
+
+        if (savedViewMode && (window.innerWidth > 479 || savedViewMode === 'thumbs')) {
+            changeClass(savedViewMode);
+            if (savedViewMode === 'thumbs') {
+                setActiveButton(thumbsButton);
+            } else if (savedViewMode === 'simple') {
+                setActiveButton(simpleButton);
+            } else if (savedViewMode === 'list') {
+                setActiveButton(listButton);
+            }
+        } else {
+            changeClass('thumbs');
+            setActiveButton(thumbsButton);
+        }
+
         thumbsButton.addEventListener('click', () => {
             changeClass('thumbs');
             setActiveButton(thumbsButton);
@@ -282,15 +338,41 @@ myObj.queue = {
             changeClass('list');
             setActiveButton(listButton);
         });
+
+        window.addEventListener('resize', handleResize);
+
+        handleResize();
     },
 
     sortingPanel: function name(params) {
         const sortingBtn = document.querySelector('.folder-compare__btn');
         const sortingPopap = document.querySelector('.folder-compare__popap');
 
-        sortingBtn.addEventListener('click', function name(params) {
+        if (!sortingBtn || !sortingPopap) {
+            console.error('Required elements are not found in the DOM.');
+            return;
+        }
+
+        sortingBtn.addEventListener('click', () => {
             sortingBtn.classList.toggle("active");
             sortingPopap.classList.toggle("active");
-        })
+        });
+
+        const closeSortingPopap = () => {
+            sortingBtn.classList.remove("active");
+            sortingPopap.classList.remove("active");
+        };
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeSortingPopap();
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!sortingPopap.contains(event.target) && !sortingBtn.contains(event.target)) {
+                closeSortingPopap();
+            }
+        });
     }
 };
