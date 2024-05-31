@@ -272,7 +272,7 @@ myObj.queue = {
 
         const changeClass = (newClass) => {
             folderProductList.className = 'folder-product__list';
-            if (window.innerWidth > 479 || newClass === 'thumbs') {
+            if (window.innerWidth > 660 || newClass === 'thumbs') {
                 folderProductList.classList.add(newClass);
             } else {
                 folderProductList.classList.add('thumbs');
@@ -354,9 +354,9 @@ myObj.queue = {
                 document.querySelector('.shop-pagelist').classList.add('hide');
             }
 
-            updateProductDisplay(1);
+            updateProductDisplay(1, products, maxDisplayCount);
             createPagination(totalPages);
-            addPaginationEventListeners(totalPages);
+            addPaginationEventListeners(totalPages, products, maxDisplayCount);
         };
 
         const createPagination = (totalPages) => {
@@ -366,10 +366,10 @@ myObj.queue = {
             let paginationHTML = [];
             for (let i = 1; i <= totalPages; i++) {
                 paginationHTML.push(`
-                <li class="page-num ${i === 1 ? 'active' : ''}">
-                    ${i === 1 ? `<span>${i}</span>` : `<a href="?page=-${i}" data-page="${i}">${i}</a>`}
-                </li>
-            `);
+            <li class="page-num ${i === 1 ? 'active' : ''}">
+                ${i === 1 ? `<span>${i}</span>` : `<a href="?page=${i}" data-page="${i}">${i}</a>`}
+            </li>
+        `);
             }
 
             paginationBlock.innerHTML = '';
@@ -378,13 +378,13 @@ myObj.queue = {
             paginationBlock.appendChild(pageNext);
         };
 
-        const addPaginationEventListeners = (totalPages) => {
+        const addPaginationEventListeners = (totalPages, products, maxDisplayCount) => {
             const paginationLinks = paginationBlock.querySelectorAll('a[data-page]');
             paginationLinks.forEach(link => {
                 link.addEventListener('click', (event) => {
                     event.preventDefault();
                     const page = parseInt(event.target.dataset.page, 10);
-                    updateProductDisplay(page);
+                    updateProductDisplay(page, products, maxDisplayCount);
                     updatePagination(page, totalPages);
                     updateURL(page);
                 });
@@ -396,7 +396,7 @@ myObj.queue = {
                     event.preventDefault();
                     const currentPage = parseInt(paginationBlock.querySelector('.page-num.active span').innerText, 10);
                     if (currentPage > 1) {
-                        updateProductDisplay(currentPage - 1);
+                        updateProductDisplay(currentPage - 1, products, maxDisplayCount);
                         updatePagination(currentPage - 1, totalPages);
                         updateURL(currentPage - 1);
                     }
@@ -409,7 +409,7 @@ myObj.queue = {
                     event.preventDefault();
                     const currentPage = parseInt(paginationBlock.querySelector('.page-num.active span').innerText, 10);
                     if (currentPage < totalPages) {
-                        updateProductDisplay(currentPage + 1);
+                        updateProductDisplay(currentPage + 1, products, maxDisplayCount);
                         updatePagination(currentPage + 1, totalPages);
                         updateURL(currentPage + 1);
                     }
@@ -417,15 +417,19 @@ myObj.queue = {
             }
         };
 
-        const updateProductDisplay = (activePage) => {
-            const products = [...folderProductList.children];
-            const maxDisplayCount = 8;
+        const updateProductDisplay = (activePage, products, maxDisplayCount) => {
             const start = (activePage - 1) * maxDisplayCount;
             const end = start + maxDisplayCount;
 
-            products.forEach((product, index) => {
-                product.style.display = (index >= start && index < end) ? '' : 'none';
-            });
+            // Remove all children
+            while (folderProductList.firstChild) {
+                folderProductList.removeChild(folderProductList.firstChild);
+            }
+
+            // Append only the products for the active page
+            for (let i = start; i < end && i < products.length; i++) {
+                folderProductList.appendChild(products[i]);
+            }
         };
 
         const updatePagination = (activePage, totalPages) => {
@@ -433,7 +437,7 @@ myObj.queue = {
             paginationItems.forEach(item => {
                 if (item.classList.contains('active')) {
                     const pageNum = item.querySelector('span').innerText;
-                    item.innerHTML = `<a href="?page=-${pageNum}" data-page="${pageNum}">${pageNum}</a>`;
+                    item.innerHTML = `<a href="?page=${pageNum}" data-page="${pageNum}">${pageNum}</a>`;
                     item.classList.remove('active');
                 }
             });
@@ -450,7 +454,7 @@ myObj.queue = {
         };
 
         const updateURL = (page) => {
-            const newURL = `${window.location.pathname}?page=-${page}`;
+            const newURL = `${window.location.pathname}?page=${page}`;
             window.history.pushState({ path: newURL }, '', newURL);
         };
 
